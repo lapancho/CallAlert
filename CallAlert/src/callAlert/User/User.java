@@ -72,5 +72,13 @@ public class User {
 		this.firstName = firstName;
 		
 	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public String getPassword() {
+		return password;
+	}
 	
 }
