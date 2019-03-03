@@ -8,9 +8,6 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Call;
 import com.twilio.type.PhoneNumber;
 
-import com.twilio.twiml.VoiceResponse;
-import com.twilio.twiml.voice.Say;
-import com.twilio.twiml.TwiMLException;
 
 public class MakePhoneCall {
 
@@ -23,8 +20,9 @@ public class MakePhoneCall {
      String from = "+19193720966";
      String to = "+19196073378";
 
+     
      Call call = Call.creator(new PhoneNumber(to), new PhoneNumber(from),
-             new URI("http://demo.twilio.com/docs/voice.xml")).create();
+             new URI("https://handler.twilio.com/twiml/EHef719ef6e2dddb923dd41ad2396c5163")).create();
  }
 }
 

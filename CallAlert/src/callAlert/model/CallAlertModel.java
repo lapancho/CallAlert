@@ -62,7 +62,7 @@ public class CallAlertModel {
 	}
 
 	public void emergencyCall() {
-		// Make call
+		MakePhoneCall call = new MakePhoneCall();
 		// send type of crime
 		// send location
 	}
