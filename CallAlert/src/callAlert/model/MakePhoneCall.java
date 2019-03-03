@@ -34,7 +34,7 @@ public class MakePhoneCall {
 		
 		//Hello, Jenny Smith is suffering from domestic violence at 123 Random Street, Cary, NC. This is a urgent request for ems. 
 	    Call call2 = Call.creator(new PhoneNumber(to), new PhoneNumber(from), 
-	    		 new URI("https://handler.twilio.com/twiml/EHf54eca1ee0381770a4c522b6f79e8225)")).create();
+	    		 new URI("https://handler.twilio.com/twiml/EHf54eca1ee0381770a4c522b6f79e8225")).create();
 	}
 
 }
