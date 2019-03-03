@@ -3,7 +3,10 @@
  */
 package callAlert.model;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import callAlert.User.User;
 
@@ -13,7 +16,7 @@ import callAlert.User.User;
  * @author Lagni Pancholi
  *
  */
-public class CallAlertModel {
+public class CallAlertModel extends Observable implements Observer {
 
 	private static CallAlertModel instance;
 
@@ -61,9 +64,16 @@ public class CallAlertModel {
 		return false; // not logged in = can't log out
 	}
 
-	public void emergencyCall() {
-		MakePhoneCall call = new MakePhoneCall();
+
+	public void emergencyCall() throws URISyntaxException {
+		MakePhoneCall.run();
 		// send type of crime
 		// send location
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+
 	}
 }
