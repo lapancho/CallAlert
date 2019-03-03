@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URISyntaxException;
 import java.security.acl.Group;
 import java.text.NumberFormat;
 import java.util.Observable;
@@ -151,7 +152,7 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 		personalInfo.add(nameLabel);
 		nameTextField = new JTextField(35);
 		inputPanel.add(nameTextField);
-		
+
 		raceDate = new JLabel("Address:");
 		personalInfo.add(raceDate);
 		raceDateText = new JTextField(35);
@@ -159,14 +160,13 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 
 		additionalInfoLabel = new JLabel("Additional Info:");
 		personalInfo.add(additionalInfoLabel);
-		additionalInfoTextArea = new JTextArea(3,35);
+		additionalInfoTextArea = new JTextArea(3, 35);
 		inputPanel.add(additionalInfoTextArea);
-		
+
 //		JPanel textBoxPanel = new JPanel();
 //		textBoxPanel.add(additionalInfoTextArea);
 //		
 //		inputPanel.add(textBoxPanel);
-
 
 		// ADDITIONAL INFO PANEL
 
@@ -222,12 +222,16 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
+
 		if (e.getSource() == callButton) {
-			
+			try {
+				CallAlertModel.getInstance().emergencyCall();
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		
+
 	}
 
 //	/**

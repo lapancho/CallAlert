@@ -14,17 +14,17 @@ import com.twilio.twiml.TwiMLException;
 
 public class MakePhoneCall {
 
- public static final String ACCOUNT_SID = "AC1ea99dd078ee08edb0b046d7de8f62c0";
- public static final String AUTH_TOKEN = "7dda1d807ccdb1b9e1a5c267bccfdb77";
+	public static final String ACCOUNT_SID = "AC1ea99dd078ee08edb0b046d7de8f62c0";
+	public static final String AUTH_TOKEN = "7dda1d807ccdb1b9e1a5c267bccfdb77";
 
- public static void main(String[] args) throws URISyntaxException {
-     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+	public static void run() throws URISyntaxException {
+		Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-     String from = "+19193720966";
-     String to = "+19196073378";
+		String from = "+19193720966";
+		String to = "+19196073378";
 
-     Call call = Call.creator(new PhoneNumber(to), new PhoneNumber(from),
-             new URI("http://demo.twilio.com/docs/voice.xml")).create();
- }
+		Call call = Call
+				.creator(new PhoneNumber(to), new PhoneNumber(from), new URI("http://demo.twilio.com/docs/voice.xml"))
+				.create();
+	}
 }
-
