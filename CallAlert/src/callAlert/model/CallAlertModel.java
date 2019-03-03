@@ -21,8 +21,8 @@ public class CallAlertModel extends Observable implements Observer {
 	private static CallAlertModel instance;
 
 	public ArrayList<User> list;
-	
-	public String crime; 
+
+	public String crime;
 
 	public User currentUser;
 	/** Number of users that can be stored in the system */
@@ -48,9 +48,14 @@ public class CallAlertModel extends Observable implements Observer {
 		return this.currentUser;
 	}
 
+	public void setCrime(String crime) {
+		this.crime = crime;
+	}
+
 	public String getCrime() {
 		return this.crime;
 	}
+
 	public User login(int number, String password) {
 		for (int j = 0; j < list.size(); j++) {
 			if (list.get(j).getNumber() == number && list.get(j).getPassword().equals(password)) {
@@ -69,18 +74,16 @@ public class CallAlertModel extends Observable implements Observer {
 		return false; // not logged in = can't log out
 	}
 
-
 	public void emergencyCallMugged() throws URISyntaxException {
-		if(this.getCrime() == "Mugged") {
+		if (this.getCrime() == "Mugging") {
 			MakePhoneCall.runMugged();
 		}
-		if(this.getCrime() == "Domestic Violence") {
+		if (this.getCrime() == "Domestic Violence") {
 			MakePhoneCall.runDomestic();
 		}
 		// send type of crime
 		// send location
 	}
-	
 
 	@Override
 	public void update(Observable o, Object arg) {
