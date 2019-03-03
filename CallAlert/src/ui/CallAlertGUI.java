@@ -4,30 +4,23 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URISyntaxException;
-import java.security.acl.Group;
-import java.text.NumberFormat;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -63,7 +56,7 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 	/** Label for denominator 1 */
 	private JLabel additionalInfoLabel;
 	/** Text field for denominator 1 */
-	private JTextArea additionalInfoTextArea;
+	private JTextField additionalInfoTextArea;
 	/** Label for numerator 2 */
 	private JLabel raceDate;
 	/** Text field for numerator 2 */
@@ -127,16 +120,16 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 
 		// infoPanel holds additional information
 		JPanel infoPanel = new JPanel();
-		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
+		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
 
-		// callButtonPanel holds the call butotn
+		// callButtonPanel holds the call button
 		JPanel callButtonPanel = new JPanel();
 		callButtonPanel.setLayout(new BoxLayout(callButtonPanel, BoxLayout.Y_AXIS));
 
 		// personalInfoPanel holds personalInfo and inputPanel
 		JPanel personalInfoPanel = new JPanel();
 		personalInfoPanel.setBorder(new TitledBorder("Personal Information"));
-		personalInfoPanel.setPreferredSize(new Dimension(600, 200));
+		personalInfoPanel.setPreferredSize(new Dimension(600, 100));
 
 		JPanel personalInfo = new JPanel();
 		personalInfo.setLayout(new BoxLayout(personalInfo, BoxLayout.Y_AXIS));
@@ -145,31 +138,29 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 		inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
 
 		personalInfoPanel.add(personalInfo);
-		personalInfoPanel.add(inputPanel);
 
 		// PERSONAL INFO PANEL
 		nameLabel = new JLabel("Name:");
-		personalInfo.add(nameLabel);
-		nameTextField = new JTextField(35);
-		inputPanel.add(nameTextField);
-
 		raceDate = new JLabel("Address:");
-		personalInfo.add(raceDate);
-		raceDateText = new JTextField(35);
-		inputPanel.add(raceDateText);
-
 		additionalInfoLabel = new JLabel("Additional Info:");
+
+		personalInfo.add(nameLabel);
+		personalInfo.add(raceDate);
 		personalInfo.add(additionalInfoLabel);
-		additionalInfoTextArea = new JTextArea(3, 35);
+
+		nameTextField = new JTextField(35);
+		raceDateText = new JTextField(35);
+		additionalInfoTextArea = new JTextField(35);
+
+		inputPanel.add(nameTextField);
+		inputPanel.add(raceDateText);
 		inputPanel.add(additionalInfoTextArea);
 
-//		JPanel textBoxPanel = new JPanel();
-//		textBoxPanel.add(additionalInfoTextArea);
-//		
-//		inputPanel.add(textBoxPanel);
+		personalInfoPanel.add(inputPanel, BorderLayout.NORTH);
 
 		// ADDITIONAL INFO PANEL
-
+		
+		//  URGENCY OPTIONS
 		JRadioButton urgentButton = new JRadioButton("Urgent");
 		JRadioButton moderateButton = new JRadioButton("Moderate");
 		JRadioButton lowButton = new JRadioButton("Low");
@@ -188,8 +179,28 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 		radioPanel.add(urgentButton);
 		radioPanel.add(moderateButton);
 		radioPanel.add(lowButton);
-
+		
+		// EMERGENCY SERVICES OPTION
+		JCheckBox police = new JCheckBox("Police");
+		JCheckBox ambulance = new JCheckBox("EMS");
+		JCheckBox fire = new JCheckBox("Fire");
+		
+		ButtonGroup emergencyService = new ButtonGroup();
+		emergencyService.add(police);
+		emergencyService.add(ambulance);
+		emergencyService.add(fire);
+		
+		police.addActionListener(this);
+		ambulance.addActionListener(this);
+		fire.addActionListener(this);
+		
+		JPanel checkPanel = new JPanel(new GridLayout (0,1));
+		checkPanel.add(police);
+		checkPanel.add(ambulance);
+		checkPanel.add(fire);
+		
 		infoPanel.add(radioPanel);
+		infoPanel.add(checkPanel);
 
 		// CALL BUTTON PANEL
 		callButton = new JButton("Call");
@@ -206,7 +217,7 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 	}
 
 	/**
-	 * Starts the Pack Scheduler program.
+	 * Starts the CallAlert program.
 	 * 
 	 * @param args command line arguments
 	 */
