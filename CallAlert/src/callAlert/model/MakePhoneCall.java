@@ -20,8 +20,14 @@ public class MakePhoneCall {
 		String from = "+19193720966";
 		String to = "+19196073378";
      
+	 // Hello, Varsha Gopal is being mugged at North Carolina State University. This is ugrent request for police.
      Call call = Call.creator(new PhoneNumber(to), new PhoneNumber(from),
              new URI("https://handler.twilio.com/twiml/EHef719ef6e2dddb923dd41ad2396c5163")).create();
+     
+     //Hello, Jenny Smith is suffering from domestic violence at 123 Random Street, Cary, NC. This is a urgent request for ems. 
+     Call call2 = Call.creator(new PhoneNumber(to), new PhoneNumber(from), 
+    		 new URI("https://handler.twilio.com/twiml/EHf54eca1ee0381770a4c522b6f79e8225)")).create();
+    		 		
  }
 
 }
