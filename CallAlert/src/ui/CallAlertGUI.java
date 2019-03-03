@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import callAlert.model.CallAlertModel;
@@ -66,7 +67,7 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 		CallAlertModel.getInstance().addObserver(this);
 
 		// Set up general GUI info
-		setSize(650, 400);
+		setSize(650, 300);
 		setLocation(50, 50);
 		setTitle(APP_TITLE);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -80,7 +81,12 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 
 		initializeGUI();
 
-		// Set the GUI visible
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
 		setVisible(true);
 	}
 
@@ -174,13 +180,14 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 		checkPanel.add(fire);
 
 		// TYPE OF CRIME PANEL
-		String[] crimeStrings = { " ", "Medical Emergency", "Fire", "Car Accident", "Mugging", "Domestic Violence",
-				"Death" };
+		String[] crimeStrings = { " ", "Medical Emergency", "Fire", "Car Accident", "Mugging", "Break-in",
+				"Domestic Violence", "Death" };
 		reasons = new JComboBox<String>(crimeStrings);
 		reasons.setSelectedIndex(0);
 		reasons.addActionListener(this);
 
 		JPanel comboPanel = new JPanel();
+		comboPanel.setBorder(new TitledBorder("Reason for Calling"));
 		comboPanel.add(reasons);
 
 		// add to info panel
@@ -193,12 +200,12 @@ public class CallAlertGUI extends JFrame implements ActionListener, Observer {
 		callButtonPanel.add(callButton);
 		callButton.addActionListener(this);
 
-		JPanel leftPanel = new JPanel();
-		leftPanel.add(personalInfoPanel, BorderLayout.NORTH);
-		leftPanel.add(infoPanel, BorderLayout.SOUTH);
-		leftPanel.add(callButtonPanel, BorderLayout.SOUTH);
+		JPanel mainPanel = new JPanel();
+		mainPanel.add(personalInfoPanel, BorderLayout.NORTH);
+		mainPanel.add(infoPanel, BorderLayout.SOUTH);
+		mainPanel.add(callButtonPanel, BorderLayout.SOUTH);
 
-		infoContainer.add(leftPanel);
+		infoContainer.add(mainPanel);
 
 	}
 
