@@ -75,8 +75,8 @@ public class CallAlertModel extends Observable implements Observer {
 	}
 
 	public void emergencyCallMugged() throws URISyntaxException {
-		if (this.getCrime() == "Mugging") {
-			MakePhoneCall.runMugged();
+		if (this.getCrime() == "Break-in") {
+			MakePhoneCall.runBreakIn();
 		}
 		if (this.getCrime() == "Domestic Violence") {
 			MakePhoneCall.runDomestic();
